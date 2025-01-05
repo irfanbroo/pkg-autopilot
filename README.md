@@ -1,39 +1,68 @@
-Software Installation Script
-Overview
-This script automates the process of checking for and installing software packages on a Debian-based system using apt. It checks if the specified software is already installed, and if not, it proceeds to install it. This script is especially useful for ensuring that multiple software packages are installed efficiently with minimal manual intervention.
+markdown
+# pkg-autopilot
 
-Prerequisites
-The script is designed to run on Debian-based systems (e.g., Ubuntu).
+## Overview
+`pkg-autopilot` is a Bash script designed to automate the installation of software packages on a Debian-based system using `apt`. It checks if the specified software is already installed and installs it if necessary.
 
-Ensure you have root privileges or can run the script with sudo.
+## Prerequisites
+- Designed for Debian-based systems (e.g., Ubuntu).
+- Root privileges or the ability to run commands with `sudo`.
 
-Usage
-Clone the repository:
-
-sh
-git clone https://github.com/your-username/your-repo-name.git
-cd your-repo-name
+## Usage
+1. **Clone the repository**:
+   ```sh
+   git clone https://github.com/your-username/pkg-autopilot.git
+   cd pkg-autopilot
 Make the script executable:
 
 sh
-chmod +x 10.sh
+chmod +x pkg-autopilot.sh
 Run the script with software names as positional arguments:
 
 sh
-sudo ./10.sh software1 software2 software3
+sudo ./pkg-autopilot.sh software1 software2 software3
 Example:
 
 sh
-sudo ./10.sh vlc discord python3
+sudo ./pkg-autopilot.sh vlc discord python3
 Script Details
-Check for Arguments: Ensures that at least one software name is provided as a positional argument.
+Positional Arguments Check: Ensures that at least one software name is provided.
 
-Check for Root Privileges: Ensures that the script is run with root privileges.
+Root Privileges Check: Ensures the script is run with root privileges.
 
-For Loop: Iterates through each software name provided:
+For Loop: Iterates through each software name:
 
-Check if Installed: Uses which to check if the software is already installed.
+Check if Installed: Uses which to see if the software is installed.
 
-Install Software: If the software is not found, it attempts to install it using apt.
+Install Software: Installs the software using apt.
 
-Check Installation Success: Prints a success message if the installation is successful; otherwise, prints an error message.
+Check Installation Success: Prints a success or error message based on the installation result.
+
+Example
+bash
+#!/bin/bash
+if [ $# -eq 0 ]; then
+    echo "Enter the name of the softwares you want to install as positional arguments"
+    exit 1
+fi
+
+if [ $(id -u) -ne 0 ]; then
+    echo "Come back as a root user or with sudo privileges"
+    exit 1
+fi
+
+for softwares in "$@"; do
+    if which $softwares &> /dev/null; then
+        echo "Already $softwares is installed"
+    else
+        echo "Installing $softwares ....."
+        sudo apt install $softwares -y &> /dev/null
+        if [ $? -eq 0 ]; then
+            echo "Successfully installed $softwares packages"
+        else
+            echo "Unable to install $softwares"
+        fi
+    fi
+done
+Contributing
+Contributions are welcome! If you find any bugs or have suggestions, please open an issue or submit a pull request.
