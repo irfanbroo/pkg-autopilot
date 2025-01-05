@@ -37,33 +37,3 @@ Check if Installed: Uses which to check if the software is already installed.
 Install Software: If the software is not found, it attempts to install it using apt.
 
 Check Installation Success: Prints a success message if the installation is successful; otherwise, prints an error message.
-
-Example
-sh
-#!/bin/bash
-if [ $# -eq 0 ]; then
-    echo "Enter the name of the softwares you want to install as positional arguments"
-    exit 1
-fi
-
-if [ $(id -u) -ne 0 ]; then
-    echo "Come back as a root user or with sudo privileges"
-    exit 1
-fi
-
-for softwares in "$@"; do
-    if which $softwares &> /dev/null; then
-        echo "Already $softwares is installed"
-    else
-        echo "Installing $softwares ....."
-        sudo apt update &> /dev/null
-        sudo apt install $softwares -y &> /dev/null
-        if [ $? -eq 0 ]; then
-            echo "Successfully installed $softwares packages"
-        else
-            echo "Unable to install $softwares"
-        fi
-    fi
-done
-Contributing
-Contributions are welcome! If you find any bugs or have suggestions for improvements, please open an issue or submit a pull request.
