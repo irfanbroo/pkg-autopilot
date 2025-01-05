@@ -5,7 +5,7 @@
 # Software Installation Script
 
 ## Overview
-This Bash script automates the process of checking and installing software packages on a Linux system. It ensures that the required packages are installed, and if they are not, it installs them using the `apt` package manager.
+This Bash script automates the process of checking and installing software packages on a Linux system. It ensures that the required packages are installed, and if they are not, it installs them using the `apt` package manager. I could have tweaked it a bit more and included more package managers like snap,yum etc  and could have made it more flexible beacasue some programs like vlc is not found in apt but was on snap but im using WSL right now so i dont have the liberty to do snap and other package managers at the moment.Maybe in the fututre im looking forward to making it more robust. 
 
 ## Features
 - Verifies if the user running the script has root or sudo privileges.
