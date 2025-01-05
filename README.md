@@ -1,18 +1,17 @@
-pkg-autopilot
-Overview
-pkg-autopilot is a versatile Bash script designed to automate the installation of software packages on Debian-based systems using apt. The script checks if the specified software is already installed and installs it if necessary. This tool ensures that your system has the required software installed efficiently with minimal manual intervention.
+# pkg-autopilot
 
-Prerequisites
-The script is designed to run on Debian-based systems (e.g., Ubuntu).
+## Overview
+`pkg-autopilot` is a versatile Bash script designed to automate the installation of software packages on Debian-based systems using `apt`. The script checks if the specified software is already installed and installs it if necessary. This tool ensures that your system has the required software installed efficiently with minimal manual intervention.
 
-Ensure you have root privileges or can run the script with sudo.
+## Prerequisites
+- The script is designed to run on Debian-based systems (e.g., Ubuntu).
+- Ensure you have root privileges or can run the script with `sudo`.
 
-Usage
-Clone the repository:
-
-sh
-git clone https://github.com/your-username/pkg-autopilot.git
-cd pkg-autopilot
+## Usage
+1. **Clone the repository:**
+   ```sh
+   git clone https://github.com/your-username/pkg-autopilot.git
+   cd pkg-autopilot
 Make the script executable:
 
 sh
@@ -63,3 +62,6 @@ for softwares in "$@"; do
             echo "Unable to install $softwares"
         fi
     fi
+done
+Contributing
+Contributions are welcome! If you find any bugs or have suggestions for improvements, please open an issue or submit a pull request.
