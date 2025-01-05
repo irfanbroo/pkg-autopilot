@@ -1,4 +1,4 @@
-Here’s the README in a rendered format for easy copy-pasting:
+
 
 ---
 
@@ -72,4 +72,4 @@ This script is provided "as-is" without any warranty. Use at your own risk.
 
 --- 
 
-You can now copy and paste this directly into your README file!
+
